@@ -1,15 +1,15 @@
-class squareroot{
-    static root(x = null){
+class squaring{
+    static square(x = null){
         let result = 0;
         if(Array.isArray(x)) {
             x.forEach(function (item) {
-                result = squareroot.root(item);
+                result = squaring.square(item);
             });
         }
         else {
-            result = Math.sqrt(x);
+            result = x * x;
         }
         return result;
     }
 }
-module.exports = squareroot;
+module.exports = squaring;
