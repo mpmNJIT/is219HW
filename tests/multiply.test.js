@@ -1,4 +1,4 @@
-const multiply = require('../multiply');
+const multiply = require('../multiplication');
 
 test('multiplies 4 by 4 to equal 16.', () => {
     expect (multiply(4,4)).toBe(16);
