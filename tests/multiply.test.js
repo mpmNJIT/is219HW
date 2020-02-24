@@ -1,5 +1,5 @@
-const multiply = require('../multiplication');
+const multiplication = require('../multiply');
 
-test('multiplies 4 by 4 to equal 16.', () => {
-    expect (multiply(4,4)).toBe(16);
+test('multiplies 3 x 3 to equal 9', () => {
+    expect(multiplication.multiply(3, 3)).toBe(9);
 });

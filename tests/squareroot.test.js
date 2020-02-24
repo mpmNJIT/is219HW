@@ -1,5 +1,5 @@
 const squareroot = require('../squareroot');
 
-test('gets the square root of 64, expects 8', () => {
-    expect (squareroot(64)).toBe(8);
+test('gets square root of 64. Expects 8', () => {
+    expect(squareroot.root(64)).toBe(8);
 });
