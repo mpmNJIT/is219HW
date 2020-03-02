@@ -1,5 +1,6 @@
 const fs = require("fs");
-const parse = require("csv-parse");
+const csv = require("csv-parser");
+
 
 const filepath = "./example_data.csv";
 
