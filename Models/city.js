@@ -1,22 +1,20 @@
+module.exports = class City {
+    constructor(data = null) {
+        if(data) {
+            this.id = data.id;
+            this.city = data.city;
+            this.city_ascii = data.city_ascii;
+            this.lat = data.lat;
+            this.lng = data.lng;
+            this.iso2 = data.iso2;
+            this.iso3 = data.iso3;
+            this.capital = data.capital;
+            this.admin_name = data.admin_name;
+        }
 
-class City {
-    //Constructor Method (City.constructor())
-    constructor(city, city_ascii, lat, lng, country, iso2, iso3, admin_name, capital, population, id) {
-        this.city = city;
-        this.city_ascii = city_ascii;
-        this.lat = lat;
-        this.lng = lng;
-        this.country = country;
-        this.iso2 = iso2;
-        this.iso3 = iso3;
-        this.admin_name = admin_name;
-        this.capital = capital;
-        this.population = population;
-        this.id = id;
     }
-    //Factory Method to create a new City (City.create())
-    static create(city, city_ascii, lat, lng, country, iso2, iso3, admin_name, capital, population, id){
-        return new City(city, city_ascii, lat, lng, country, iso2, iso3, admin_name, capital, population, id)
+    //Factory Method to Create a City
+    static create(data) {
+        return new City(data);
     }
-}
-module.exports = City;
+};

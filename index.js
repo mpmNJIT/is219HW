@@ -14,14 +14,17 @@ fs.createReadStream(csvFile)
         .on('readable', function(){
             let record;
             while (record = this.read()) {
-                console.log(record);
-                let city = new City(record);
-                output.push(record);
+                //console.log(record);
+                let city = City.create(record.city, record.city_ascii, record.lat, record.lng,
+                    record.country, record.iso2, record.iso3, record.admin_name, record.capital,
+                    record.population, record.id);
+                //console.log(city);
+                output.push(city);
             }
         })
         // When we are done, test that the parsed output matched what expected
         .on('end', function(){
 
-            //  console.log(output);
+             console.log(output);
 
         }));
