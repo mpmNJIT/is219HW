@@ -1,3 +1,4 @@
+"city","city_ascii","lat","lng","country","iso2","iso3","admin_name","capital","population","id"
 "Recife","Recife","-8.0756","-34.9156","Brazil","BR","BRA","Pernambuco","admin","3651000","1076137337"
 "Seattle","Seattle","47.6211","-122.3244","United States","US","USA","Washington","","3643765.0","1840021117"
 "Harbin","Harbin","45.7500","126.6500","China","CN","CHN","Heilongjiang","admin","3621000","1156241528"

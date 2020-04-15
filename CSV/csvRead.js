@@ -3,7 +3,7 @@ const parse = require("csv-parse");
 
 class csvRead {
     static create_list(Model, csvFile) {
-        const output = [];
+        let output = [];
         fs.createReadStream(csvFile)
             .pipe(parse({
                 columns: true,
@@ -23,9 +23,10 @@ class csvRead {
                 // When we are done, test that the parsed output matched what expected
                 .on('end', function () {
 
-                    console.log(output);
+                    //console.log(output);
 
                 }));
+
         return output;
     }
 }

@@ -1,4 +1,4 @@
-module.exports = class City {
+class City {
     constructor(data = null) {
         if(data) {
             this.id = data.id;
@@ -17,4 +17,5 @@ module.exports = class City {
     static create(data) {
         return new City(data);
     }
-};
+}
+module.exports = City;
