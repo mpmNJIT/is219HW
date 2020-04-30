@@ -1,28 +1,28 @@
-const fs = require("fs");
-const parse = require("csv-parse");
-const City = require('./Models/city');
-const output = [];
-let csvFile = "./Data/5LineTest.csv";
+const file = require('./FilePath/File');
+const fs = require('fs');
+const parse = require('csv-parse/lib/sync');
+const Model = require('./Models/car');
+let csvFile = './Data/5LineTest.csv';
+let absolutePath = file.getAbsolutePath(csvFile);
+const options = {
+    columns: true,
+    delimiter: ',',
+    trim: true,
+    skip_empty_lines: true
+};
+let fileContents = fs.readFileSync(absolutePath);
+const records = parse(fileContents, options);
+let list = Array();
+records.forEach(function (data) {
+    list.push(Model.create(data));
+});
 
-fs.createReadStream(csvFile)
-    .pipe(parse({
-        columns: true,
-        delimiter: ',',
-        trim: true,
-        skip_empty_lines: true
-    })
-        .on('readable', function(){
-            let record;
-            while (record = this.read()) {
-                //console.log(record);
-                let city = City.create(record);
-                //console.log(city);
-                output.push(city);
-            }
-        })
-        // When we are done, test that the parsed output matched what expected
-        .on('end', function(){
-
-             console.log(output);
-
-        }));
+for (const item of list) {
+    if (typeof(item) === 'object'){
+        const keylist = Object.values(item);
+        console.log(keylist);
+        if (keylist.includes(undefined)){
+            console.log("Error!")
+        }
+    }
+}

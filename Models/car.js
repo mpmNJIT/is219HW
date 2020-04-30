@@ -1,4 +1,4 @@
-module.exports = class Car {
+class Car {
     constructor(data = null) {
         if(data) {
             this.id = data.id;
@@ -13,3 +13,4 @@ module.exports = class Car {
         return new Car(data);
     }
 };
+module.exports = Car;
