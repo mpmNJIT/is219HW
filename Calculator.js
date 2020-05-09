@@ -1,4 +1,5 @@
 const MathOperations = require('./MathOperations');
+const Sanitize = require('./Sanitize');
 
 class Calculator {
     Add(x = null, y = null) {

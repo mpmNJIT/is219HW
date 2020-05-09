@@ -43,7 +43,7 @@ test('Calculator add array of 1,2,3,4 and get result 10', () => {
 });
 test('Calculator divide by 0 and get error', () => {
     let Calc = new Calculator();
-    expect(Calc.Divide(1, 0)).toBe("Error! Cannot divide by zero!");
-    expect(Calc.Result).toBe("Error! Cannot divide by zero!");
-
+    expect(() => {
+        Calc.Divide(1, 0);
+    }).toThrow('Cannot divide by zero!');
 });

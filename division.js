@@ -7,7 +7,7 @@ class division{
             });
         }
         if(y === 0) {
-            result = "Error! Cannot divide by zero!"
+            throw new Error('Cannot divide by zero!');
         }
         else {
             result = x / y;
