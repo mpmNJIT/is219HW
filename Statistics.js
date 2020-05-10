@@ -14,10 +14,10 @@ class Statistics extends Calculator {
         let midpoint = Math.ceil(this.Divide(numValues, 2));
         if (numValues % 2 === 0) {
             let val1 = sortValues[midpoint];
-            let val2 = sortValues[midpoint - 1];
-            return ((val1 + val2) / 2)
+            let val2 = sortValues[this.Subtract(midpoint, 1)];
+            return (this.Divide((this.Add(val1, val2)), 2));
         } else{
-            return (sortValues[midpoint - 1]);
+            return (sortValues[this.Subtract(midpoint, 1)]);
         }
     }
 
@@ -49,6 +49,15 @@ class Statistics extends Calculator {
         } else {
             return modecounter;
         }
+    }
+
+    Variance(values) {
+        let valMean = this.Mean(values);
+        let dividend = 0;
+        for (let i=0; i< values.length; i++){
+            dividend += Math.pow((values[i] - valMean), 2)
+        }
+        return (dividend/(values.length))
     }
 }
 module.exports = Statistics;
