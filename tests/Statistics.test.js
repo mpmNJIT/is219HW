@@ -39,10 +39,19 @@ test('Get mode and expect multiple values. (returns as array)', () => {
 
     expect(mode).toStrictEqual([7,9]);
 });
+
 test('Get Variance of array (Population)', () => {
     let a = [5,7,9,11,14];
     let Stat = new Statistics();
     let variance = Stat.Variance(a);
 
     expect(variance).toBe(9.76)
+});
+
+test('Get Standard Deviation of array (Population)', () => {
+    let a = [1,2,3,4,5];
+    let Stat = new Statistics();
+    let standev = Stat.StanDev(a);
+
+    expect(standev).toBe(1.4142135623730951)
 });

@@ -59,5 +59,10 @@ class Statistics extends Calculator {
         }
         return (dividend/(values.length))
     }
+
+    StanDev(values){
+        let variance = this.Variance(values);
+        return this.Squareroot(variance);
+    }
 }
 module.exports = Statistics;
