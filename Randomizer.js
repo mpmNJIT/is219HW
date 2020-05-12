@@ -25,5 +25,23 @@ class Randomizer extends Calculator{
         }
     }
 
+    RandList(items, min, max, IntOrDec, seed){
+        Sanitize.checkIfString(items);
+        let list = [];
+        let num;
+        for (let i=0; i< items; i++){
+            num = this.RandNum(min, max, IntOrDec, seed + i.toString());
+            list.push(num);
+        }
+        return list;
+
+    }
+
+    SelItem(list){
+        let max = (list.length) - 1;
+        let index = this.RandNum(0, max, "Int");
+        return list[index];
+    }
+
 }
 module.exports = Randomizer;
