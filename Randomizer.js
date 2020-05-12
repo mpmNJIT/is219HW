@@ -19,7 +19,7 @@ class Randomizer extends Calculator{
             return Math.floor(result);
         } else if (IntOrDec === "Dec"){
             result = ( (random * (max - min)) + min);
-            return result;
+            return Number(result.toFixed(2));
         } else{
             throw new Error('This requires "Int" or "Dec" as input.')
         }

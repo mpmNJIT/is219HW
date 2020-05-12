@@ -32,7 +32,7 @@ test('Create random decimal with seed', () => {
     let Rand = new Randomizer();
     let randnum = Rand.RandNum(min, max, Dec, seed);
 
-    expect(randnum).toBe(9.477938095493933);
+    expect(randnum).toBe(9.48);
 });
 
 test('Create random integer with seed', () => {
