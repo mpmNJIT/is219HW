@@ -78,3 +78,15 @@ test('Retrieve item from list', () => {
     expect(list).toContain(selitem);
 });
 
+test('Create random list from seed and select random item from list.', () => {
+    let items = 5;
+    let min = 5;
+    let max = 10;
+    let Int = "Int";
+    let seed = "jest";
+    let Rand = new Randomizer();
+    let randlistsel = Rand.RandListSel(items, min, max, Int, seed);
+
+    expect(Rand.RandList(items, min, max, Int, seed)).toContain(randlistsel);
+});
+

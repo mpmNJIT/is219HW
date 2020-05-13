@@ -43,5 +43,11 @@ class Randomizer extends Calculator{
         return list[index];
     }
 
+    RandListSel(items, min, max, IntOrDec, seed){
+        Sanitize.checkIfString(items);
+        let list = this.RandList(items, min, max, IntOrDec, seed);
+        return this.SelItem(list);
+    }
+
 }
 module.exports = Randomizer;
