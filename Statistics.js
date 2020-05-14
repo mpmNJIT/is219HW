@@ -64,5 +64,14 @@ class Statistics extends Calculator {
         let variance = this.Variance(values);
         return this.Squareroot(variance);
     }
+
+    Skewness(values){
+        let mean = this.Mean(values);
+        let median = this.Median(values);
+        let standev = this.StanDev(values);
+        return ((3 * (mean - median)) / standev);
+    }
+
+
 }
 module.exports = Statistics;

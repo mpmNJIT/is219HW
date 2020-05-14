@@ -38,6 +38,7 @@ class Randomizer extends Calculator{
     }
 
     SelItem(list){
+        Sanitize.checkIfString(list);
         let max = (list.length) - 1;
         let index = this.RandNum(0, max, "Int");
         return list[index];
@@ -47,6 +48,10 @@ class Randomizer extends Calculator{
         Sanitize.checkIfString(items);
         let list = this.RandList(items, min, max, IntOrDec, seed);
         return this.SelItem(list);
+    }
+
+    NumListSel(list, items, seed){
+        Sanitize.checkIfString(list, items)
     }
 
 }

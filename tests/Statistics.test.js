@@ -45,7 +45,7 @@ test('Get Variance of array (Population)', () => {
     let Stat = new Statistics();
     let variance = Stat.Variance(a);
 
-    expect(variance).toBe(9.76)
+    expect(variance).toBe(9.76);
 });
 
 test('Get Standard Deviation of array (Population)', () => {
@@ -53,5 +53,19 @@ test('Get Standard Deviation of array (Population)', () => {
     let Stat = new Statistics();
     let standev = Stat.StanDev(a);
 
-    expect(standev).toBe(1.4142135623730951)
+    expect(standev).toBe(1.4142135623730951);
+});
+
+test('Get skewness of array (alt Pearson Mode Skewness)', () => {
+    let a = [1,2,10,10,10,15];
+    let Stat = new Statistics();
+    let skewness = Stat.Skewness(a);
+    let mean = Stat.Mean(a);
+    let median = Stat.Median(a);
+    let standev = Stat.StanDev(a);
+
+    expect(skewness).toBe(-1.2163272811190748);
+    expect(skewness).toBe((3 * (mean - median)) / standev);
+
+    
 });
