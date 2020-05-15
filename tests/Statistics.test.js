@@ -51,7 +51,7 @@ test('Get Variance of array (Population)', () => {
 test('Get Standard Deviation of array (Population)', () => {
     let a = [1,2,3,4,5];
     let Stat = new Statistics();
-    let standev = Stat.StanDev(a);
+    let standev = Stat.StanDev(a, "Pop");
 
     expect(standev).toBe(1.4142135623730951);
 });
@@ -93,4 +93,13 @@ test('Get population correlation coefficient of 2 array sets (x and y)', () => {
     let covariance = Stat.Correlation(x, y, "Pop");
 
     expect(covariance).toBe(0.4105410039953164);
+});
+
+test('Get Z score given a set of values', () => {
+    let values = [5,10,15,20,25];
+    let score = 15;
+    let Stat = new Statistics();
+    let zscore = Stat.Zscore(values, score);
+
+    expect(zscore).toBe(0);
 });

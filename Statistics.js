@@ -105,5 +105,13 @@ class Statistics extends Calculator {
         let divisor = (this.StanDev(xvalues, SampOrPop) * this.StanDev(yvalues, SampOrPop));
         return (dividend/divisor);
     }
+
+    Zscore (values, score){
+        Sanitize.checkIfString(score);
+        let mean = this.Mean(values);
+        let standev = this.StanDev(values, "Pop");
+        let dividend = (score - mean);
+        return (dividend / standev)
+    }
 }
 module.exports = Statistics;
