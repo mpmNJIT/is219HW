@@ -70,23 +70,38 @@ test('Create random list of n integers with seed', () => {
     expect(randlist).toStrictEqual([9, 6, 10, 8, 8]);
 });
 
-test('Retrieve item from list', () => {
+test('Randomly Retrieve 1 item from list (without seed)', () => {
     let list = [1,2,3,4,5];
     let Rand = new Randomizer();
-    let selitem = Rand.SelItem(list);
+    let selitem = Rand.SelItem(list, 1);
 
     expect(list).toContain(selitem);
 });
 
-test('Create random list from seed and select random item from list.', () => {
-    let items = 5;
-    let min = 5;
-    let max = 10;
-    let Int = "Int";
+test('Randomly select item from list (with seed)', () => {
+    let list = [1,2,3,4,5];
     let seed = "jest";
     let Rand = new Randomizer();
-    let randlistsel = Rand.RandListSel(items, min, max, Int, seed);
+    let selitem = Rand.SelItem(list,1, seed);
 
-    expect(Rand.RandList(items, min, max, Int, seed)).toContain(randlistsel);
+    expect(selitem).toBe(4);
 });
 
+test('Randomly Retrieve 3 items from list (without seed)', () => {
+    let list = [1,2,3,4,5,6,7,8,9,10];
+    let Rand = new Randomizer();
+    let selitem = Rand.SelItem(list, 3);
+
+    expect(list).toContain(selitem[0]);
+    expect(list).toContain(selitem[1]);
+    expect(list).toContain(selitem[2]);
+});
+
+test('Randomly Retrieve 3 items from list (with seed)', () => {
+    let list = [1,2,3,4,5,6,7,8,9,10];
+    let Rand = new Randomizer();
+    let seed = "jest";
+    let selitem = Rand.SelItem(list, 3, seed);
+
+    expect(selitem).toStrictEqual([8, 3, 10]);
+});

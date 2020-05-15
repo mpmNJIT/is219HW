@@ -37,22 +37,36 @@ class Randomizer extends Calculator{
 
     }
 
-    SelItem(list){
-        Sanitize.checkIfString(list);
+    SelItem(list, num, seed){
+        Sanitize.checkIfString(list, num);
+        if (num < 1 || num > list.length || Number.isInteger(num) === false){
+            throw new Error('Must include amount of items selected, and number must be at least 1 and less than or equal to list length')
+        }
         let max = (list.length) - 1;
-        let index = this.RandNum(0, max, "Int");
-        return list[index];
+        let i = 0;
+        let indexlist = [];
+        let itemlist = [];
+        let index;
+        while (i < num){
+            if (seed === undefined){
+                index = this.RandNum(0, max, "Int");
+            } else {
+                index = this.RandNum(0, max, "Int", seed + i.toString());
+            }
+            if (indexlist.includes(index)){
+                continue
+            }
+            i += 1;
+            indexlist.push(index);
+            itemlist.push(list[index]);
+        }
+        if (itemlist.length === 1){
+            return itemlist[0];
+        } else {
+            return itemlist;
+        }
     }
 
-    RandListSel(items, min, max, IntOrDec, seed){
-        Sanitize.checkIfString(items);
-        let list = this.RandList(items, min, max, IntOrDec, seed);
-        return this.SelItem(list);
-    }
-
-    NumListSel(list, items, seed){
-        Sanitize.checkIfString(list, items)
-    }
 
 }
 module.exports = Randomizer;
