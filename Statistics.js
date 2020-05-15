@@ -7,18 +7,27 @@ class Statistics extends Calculator {
         return this.Divide(sum, numValues)
     }
 
-    Median(values){
-        Sanitize.checkIfString(values);
+    Quartiles(values, quart){
+        Sanitize.checkIfString(values, quart);
+        if (quart !== 1 && quart !== 2 && quart !== 3){
+            throw new Error('Quartile value provided must be number 1, 2, or 3')
+        }
         let sortValues = values.sort(function(a, b){return a-b});
         let numValues = sortValues.length;
-        let midpoint = Math.ceil(this.Divide(numValues, 2));
-        if (numValues % 2 === 0) {
-            let val1 = sortValues[midpoint];
-            let val2 = sortValues[this.Subtract(midpoint, 1)];
-            return (this.Divide((this.Add(val1, val2)), 2));
-        } else{
-            return (sortValues[this.Subtract(midpoint, 1)]);
+        let quartval = (quart/4);
+        let quartindex = (quartval * (numValues + 1)) - 1;
+        if (Number.isInteger(quartindex) === false){
+            let indexlow = Math.floor(quartindex);
+            let indexhigh = Math.ceil(quartindex);
+            return this.Divide(sortValues[indexlow] + sortValues[indexhigh], 2);
+        } else {
+            return sortValues[quartindex];
         }
+
+    }
+
+    Median(values){
+        return this.Quartiles(values, 2);
     }
 
     Mode(values) {
@@ -73,10 +82,10 @@ class Statistics extends Calculator {
         return this.Squareroot(variance);
     }
 
-    Skewness(values){
+    Skewness(values, SampOrPop){
         let mean = this.Mean(values);
         let median = this.Median(values);
-        let standev = this.StanDev(values);
+        let standev = this.StanDev(values, SampOrPop);
         return ((3 * (mean - median)) / standev);
     }
 

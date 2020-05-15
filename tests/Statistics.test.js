@@ -56,13 +56,23 @@ test('Get Standard Deviation of array (Population)', () => {
     expect(standev).toBe(1.4142135623730951);
 });
 
+test('Get first and third quartile of array', () => {
+    let a = [2, 4, 6, 8, 10, 12, 14, 16];
+    let Stat = new Statistics();
+    let firstquart = Stat.Quartiles(a, 1);
+    let thirdquart = Stat.Quartiles(a, 3);
+
+    expect(firstquart).toBe(5);
+    expect(thirdquart).toBe(13);
+});
+
 test('Get skewness of array (alt Pearson Mode Skewness)', () => {
     let a = [1,2,10,10,10,15];
     let Stat = new Statistics();
-    let skewness = Stat.Skewness(a);
+    let skewness = Stat.Skewness(a, "Pop");
     let mean = Stat.Mean(a);
     let median = Stat.Median(a);
-    let standev = Stat.StanDev(a);
+    let standev = Stat.StanDev(a, "Pop");
 
     expect(skewness).toBe(-1.2163272811190748);
     expect(skewness).toBe((3 * (mean - median)) / standev);

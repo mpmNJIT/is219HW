@@ -67,7 +67,7 @@ test('Create random list of n integers with seed', () => {
     let Rand = new Randomizer();
     let randlist = Rand.RandList(items, min, max, Dec, seed);
 
-    expect(randlist).toStrictEqual([8.59, 6.18, 9.77, 7.79, 7.59]);
+    expect(randlist).toStrictEqual([9, 6, 10, 8, 8]);
 });
 
 test('Retrieve item from list', () => {
