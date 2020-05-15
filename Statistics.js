@@ -113,5 +113,15 @@ class Statistics extends Calculator {
         let dividend = (score - mean);
         return (dividend / standev)
     }
+
+    MeanDev (values){
+        let mean = this.Mean(values);
+        let divisor = values.length;
+        let dividend = 0;
+        for(let i = 0; i<values.length ; i++){
+            dividend += Math.abs((values[i] - mean));
+        }
+        return (dividend / divisor);
+    }
 }
 module.exports = Statistics;

@@ -103,3 +103,11 @@ test('Get Z score given a set of values', () => {
 
     expect(zscore).toBe(0);
 });
+
+test('Get Mean Deviation given a set of values', () => {
+    let values = [3, 6, 6, 7, 8, 11, 15, 16];
+    let Stat = new Statistics();
+    let meandev = Stat.MeanDev(values);
+
+    expect(meandev).toBe(3.75);
+});
