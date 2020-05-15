@@ -72,6 +72,17 @@ class Statistics extends Calculator {
         return ((3 * (mean - median)) / standev);
     }
 
-
+    Covariance(xvalues, yvalues){
+        Sanitize.checkIfString(xvalues, yvalues);
+        Sanitize.checkIfUnequal(xvalues, yvalues);
+        let divisor = (xvalues.length - 1);
+        let dividend = 0;
+        let meanx = this.Mean(xvalues);
+        let meany = this.Mean(yvalues);
+        for (let i=0; i < xvalues.length; i++ ){
+            dividend += ((xvalues[i] - meanx) * (yvalues[i] - meany));
+        }
+        return (dividend / divisor);
+    }
 }
 module.exports = Statistics;

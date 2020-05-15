@@ -17,5 +17,14 @@ class Sanitize{
         }
         return check
     }
+    static checkIfUnequal(a,b) {
+        let check = true;
+        if (a.length !== b.length) {
+            throw new Error('Must provide array inputs of equal length!');
+        } else {
+            check = false;
+        }
+        return check;
+    }
 }
 module.exports = Sanitize;

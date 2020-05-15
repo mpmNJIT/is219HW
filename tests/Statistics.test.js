@@ -66,6 +66,13 @@ test('Get skewness of array (alt Pearson Mode Skewness)', () => {
 
     expect(skewness).toBe(-1.2163272811190748);
     expect(skewness).toBe((3 * (mean - median)) / standev);
+});
 
-    
+test('Get covariance of 2 array sets (x and y)', () => {
+    let x = [2.1,2.5,3.6,4.0];
+    let y = [8, 10, 12, 14];
+    let Stat = new Statistics();
+    let covariance = Stat.Covariance(x, y);
+
+    expect(covariance).toBe((6.8/3));
 });
