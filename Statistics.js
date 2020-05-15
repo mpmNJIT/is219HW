@@ -51,17 +51,25 @@ class Statistics extends Calculator {
         }
     }
 
-    Variance(values) {
+    Variance(values, SampOrPop) {
         let valMean = this.Mean(values);
         let dividend = 0;
+        let divisor;
+        if (SampOrPop === "Samp"){
+            divisor = (values.length - 1);
+        } else if (SampOrPop === "Pop"){
+            divisor = (values.length);
+        } else{
+            throw new Error('You must specify Sample or Population Variance with string "Samp" or "Pop" .')
+        }
         for (let i=0; i< values.length; i++){
             dividend += Math.pow((values[i] - valMean), 2)
         }
-        return (dividend/(values.length))
+        return (dividend/divisor);
     }
 
-    StanDev(values){
-        let variance = this.Variance(values);
+    StanDev(values, SampOrPop){
+        let variance = this.Variance(values, SampOrPop);
         return this.Squareroot(variance);
     }
 
@@ -72,10 +80,17 @@ class Statistics extends Calculator {
         return ((3 * (mean - median)) / standev);
     }
 
-    Covariance(xvalues, yvalues){
+    Covariance(xvalues, yvalues, SampOrPop){
         Sanitize.checkIfString(xvalues, yvalues);
         Sanitize.checkIfUnequal(xvalues, yvalues);
-        let divisor = (xvalues.length - 1);
+        let divisor;
+        if (SampOrPop === "Samp"){
+            divisor = (xvalues.length - 1);
+        } else if (SampOrPop === "Pop"){
+            divisor = (xvalues.length);
+        } else{
+            throw new Error('You must specify Sample or Population Covariance with string "Samp" or "Pop" .')
+        }
         let dividend = 0;
         let meanx = this.Mean(xvalues);
         let meany = this.Mean(yvalues);
@@ -83,6 +98,12 @@ class Statistics extends Calculator {
             dividend += ((xvalues[i] - meanx) * (yvalues[i] - meany));
         }
         return (dividend / divisor);
+    }
+
+    Correlation (xvalues, yvalues, SampOrPop){
+        let dividend = this.Covariance(xvalues, yvalues, SampOrPop);
+        let divisor = (this.StanDev(xvalues, SampOrPop) * this.StanDev(yvalues, SampOrPop));
+        return (dividend/divisor);
     }
 }
 module.exports = Statistics;

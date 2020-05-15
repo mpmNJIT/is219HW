@@ -43,7 +43,7 @@ test('Get mode and expect multiple values. (returns as array)', () => {
 test('Get Variance of array (Population)', () => {
     let a = [5,7,9,11,14];
     let Stat = new Statistics();
-    let variance = Stat.Variance(a);
+    let variance = Stat.Variance(a, "Pop");
 
     expect(variance).toBe(9.76);
 });
@@ -68,11 +68,29 @@ test('Get skewness of array (alt Pearson Mode Skewness)', () => {
     expect(skewness).toBe((3 * (mean - median)) / standev);
 });
 
-test('Get covariance of 2 array sets (x and y)', () => {
+test('Get sample covariance of 2 array sets (x and y)', () => {
     let x = [2.1,2.5,3.6,4.0];
     let y = [8, 10, 12, 14];
     let Stat = new Statistics();
-    let covariance = Stat.Covariance(x, y);
+    let covariance = Stat.Covariance(x, y, "Samp");
 
     expect(covariance).toBe((6.8/3));
+});
+
+test('Get sample correlation coefficient of 2 array sets (x and y)', () => {
+    let x = [2,11,6,8,10,15];
+    let y = [10,13,11,18,25,15];
+    let Stat = new Statistics();
+    let covariance = Stat.Correlation(x, y, "Samp");
+
+    expect(covariance).toBe(0.4105410039953163);
+});
+
+test('Get population correlation coefficient of 2 array sets (x and y)', () => {
+    let x = [2,11,6,8,10,15];
+    let y = [10,13,11,18,25,15];
+    let Stat = new Statistics();
+    let covariance = Stat.Correlation(x, y, "Pop");
+
+    expect(covariance).toBe(0.4105410039953164);
 });
