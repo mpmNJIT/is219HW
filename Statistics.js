@@ -218,6 +218,7 @@ class Statistics extends Calculator {
     }
 
     ConfInt(values){
+        Sanitize.checkIfString(values);
         let zscore = 1.96;
         let n = values.length;
         let mean = this.Mean(values);
@@ -227,6 +228,42 @@ class Statistics extends Calculator {
         let IntHigh = (mean + range);
         return ([IntLow, IntHigh]);
     }
+
+    MarginErr(values){
+        Sanitize.checkIfString(values);
+        let zscore = 1.96;
+        let standev = this.StanDev(values, "Pop");
+        return (zscore * standev);
+    }
+
+    Cochran(proportion){
+        Sanitize.checkIfString(proportion);
+        if (proportion <= 0 || proportion >= 1){
+            throw new Error('Proportion number must be decimal greater than 0 but less than 1')
+        }
+        let zscore = 1.96;
+        let precision = 0.05;
+        let q = (1 - proportion);
+        let dividend = ((this.Square(zscore)) * proportion * q);
+        let divisor = this.Square(precision);
+        return Math.ceil(dividend/divisor);
+    }
+
+    Upsd(percentage, width){
+        Sanitize.checkIfString(percentage, width);
+        if (percentage <= 0 || percentage >=1 || width <= 0 || width >=1){
+            throw new Error('Percentage and width number must be decimal greater than 0 but less than 1')
+        }
+        let zscore = 1.96;
+        let margin = (width / 2);
+        let q = (1 - percentage);
+        let pproduct = (percentage * q);
+        let confproduct = this.Square((zscore / margin));
+        return Math.ceil((pproduct * confproduct));
+
+    }
+
+    K
 
 }
 module.exports = Statistics;

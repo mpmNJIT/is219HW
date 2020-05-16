@@ -25,4 +25,36 @@ test('Get Confidence intervals of values (assume 95% confidence with normal dist
     expect(confint).toStrictEqual([46.88702871199666, 73.11297128800334]);
 });
 
+test('Get margin of error for a list of 30 values (seeded)', () => {
+    let Stat = new Statistics();
+    let list = Stat.RandList(30, 0, 100, "Int", "jest");
+    let marginerr = Stat.MarginErr(list);
 
+    expect(marginerr).toBe(50.13587371223213);
+});
+
+test('Get sample size from cochran formula (assuming 95% confidence)', () => {
+    let Stat = new Statistics();
+    let proportion = 0.5;
+    let cochran = Stat.Cochran(proportion);
+
+    expect(cochran).toBe(385);
+});
+
+test('unknown population standard deviation (assuming 95% confidence)', () => {
+    let Stat = new Statistics();
+    let percent = 0.41;
+    let width = 0.06;
+    let upsd = Stat.Upsd(percent, width);
+
+    expect(upsd).toBe(1033);
+});
+
+test('known population standard deviation (assuming 95% confidence)', () => {
+    let Stat = new Statistics();
+    let percent = 0.41;
+    let width = 0.06;
+    let upsd = Stat.Upsd(percent, width);
+
+    expect(upsd).toBe(1033);
+});
