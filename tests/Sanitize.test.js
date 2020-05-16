@@ -14,3 +14,11 @@ test('Throw error for string variables', () => {
     expect(() => Sanitize.checkIfString(a)).toThrow();
 
 });
+
+test('Throw error for empty array', () => {
+
+    let a = [];
+
+    expect(() => Sanitize.checkIfEmpty(a)).toThrow();
+
+});

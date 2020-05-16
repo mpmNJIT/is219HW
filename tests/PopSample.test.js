@@ -52,9 +52,9 @@ test('unknown population standard deviation (assuming 95% confidence)', () => {
 
 test('known population standard deviation (assuming 95% confidence)', () => {
     let Stat = new Statistics();
-    let percent = 0.41;
-    let width = 0.06;
-    let upsd = Stat.Upsd(percent, width);
+    let standev = 2.9;
+    let margin = 0.5;
+    let kpsd = Stat.Kpsd(standev, margin);
 
-    expect(upsd).toBe(1033);
+    expect(kpsd).toBe(129.231424);
 });

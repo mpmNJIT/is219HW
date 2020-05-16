@@ -26,5 +26,14 @@ class Sanitize{
         }
         return check;
     }
+    static checkIfEmpty(a) {
+        let check = true;
+        if (Array.isArray(a) && a.length === 0){
+            throw new Error('Array input found empty!');
+        } else {
+            check = false;
+        }
+        return check;
+    }
 }
 module.exports = Sanitize;

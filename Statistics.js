@@ -3,6 +3,7 @@ const Sanitize = require('./Sanitize');
 const SeedRandom = require('seedrandom');
 class Statistics extends Calculator {
     Mean(values){
+        Sanitize.checkIfEmpty(values);
         let sum = this.Add(values);
         let numValues = values.length;
         return this.Divide(sum, numValues)
@@ -10,6 +11,7 @@ class Statistics extends Calculator {
 
     Quartiles(values, quart){
         Sanitize.checkIfString(values, quart);
+        Sanitize.checkIfEmpty(values);
         if (quart !== 1 && quart !== 2 && quart !== 3){
             throw new Error('Quartile value provided must be number 1, 2, or 3')
         }
@@ -28,11 +30,13 @@ class Statistics extends Calculator {
     }
 
     Median(values){
+        Sanitize.checkIfEmpty(values);
         return this.Quartiles(values, 2);
     }
 
     Mode(values) {
         Sanitize.checkIfString(values);
+        Sanitize.checkIfEmpty(values);
         let sortValues = values.sort(function (a, b) {
             return a - b
         });
@@ -62,6 +66,8 @@ class Statistics extends Calculator {
     }
 
     Variance(values, SampOrPop) {
+        Sanitize.checkIfString(values);
+        Sanitize.checkIfEmpty(values);
         let valMean = this.Mean(values);
         let dividend = 0;
         let divisor;
@@ -92,6 +98,7 @@ class Statistics extends Calculator {
 
     Covariance(xvalues, yvalues, SampOrPop){
         Sanitize.checkIfString(xvalues, yvalues);
+        Sanitize.checkIfEmpty(xvalues, yvalues);
         Sanitize.checkIfUnequal(xvalues, yvalues);
         let divisor;
         if (SampOrPop === "Samp"){
@@ -263,7 +270,12 @@ class Statistics extends Calculator {
 
     }
 
-    K
+    Kpsd(standev, margin){
+        let zscore = 1.96;
+        let part1 = (zscore * standev);
+        let part2 = (part1 / margin);
+        return this.Square(part2);
+    }
 
 }
 module.exports = Statistics;
