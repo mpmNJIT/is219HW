@@ -204,5 +204,29 @@ class Statistics extends Calculator {
 
     }
 
+    SysSamp(values, samplenum){
+        Sanitize.checkIfString(values, samplenum);
+        let popsize = values.length;
+        let sampledigit = Math.floor((popsize / samplenum));
+        let samplelist = [];
+        let loopindex = (sampledigit - 1);
+        for(let i = 0; i < samplenum ; i++){
+            samplelist.push(values[loopindex]);
+            loopindex += sampledigit;
+        }
+        return samplelist;
+    }
+
+    ConfInt(values){
+        let zscore = 1.96;
+        let n = values.length;
+        let mean = this.Mean(values);
+        let standev = this.StanDev(values, "Pop");
+        let range = (zscore * standev / this.Squareroot(n));
+        let IntLow = (mean - range);
+        let IntHigh = (mean + range);
+        return ([IntLow, IntHigh]);
+    }
+
 }
 module.exports = Statistics;

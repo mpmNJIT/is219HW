@@ -9,10 +9,20 @@ test('Get a simple random sample of 5 items from a list of 50 items.', () => {
     expect(simplesamp).toStrictEqual([62.26, 66.79, 82.9, 46.74, 84.07]);
 });
 
-test('Get a systemic random sample of 5 items from a list of 50 items.', () => {
+test('Get a systemic random sample of 5 items from a list of 10 items.', () => {
     let Stat = new Statistics();
-    let randlist = Stat.RandList(50, 0, 100, "Dec", "jest");
-    let simplesamp = Stat.SimpleSamp(randlist, 5, "jest");
+    let list = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20];
+    let syssamp = Stat.SysSamp(list, 5);
 
-    expect(simplesamp).toStrictEqual([62.26, 66.79, 82.9, 46.74, 84.07]);
+    expect(syssamp).toStrictEqual([4, 8, 12, 16, 20]);
 });
+
+test('Get Confidence intervals of values (assume 95% confidence with normal distribution)', () => {
+    let Stat = new Statistics();
+    let list = [16, 84, 63, 62, 43, 75, 56, 88, 39, 74];
+    let confint = Stat.ConfInt(list);
+
+    expect(confint).toStrictEqual([46.88702871199666, 73.11297128800334]);
+});
+
+
