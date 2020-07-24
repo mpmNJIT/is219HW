@@ -3,6 +3,8 @@
 
 https://docs.google.com/document/d/1hcyWg-OWbvbZ6vhTPM0HldeaaFLf3ndal8ERYodaCVw/edit?usp=sharing
 
+Javascript implementation of a statistical calculator.
+
 Jest tests are separated into Sanitize.test.js, Statistics.test.js, Randomizer.test.js, and PopSample.test.js .
 
 All work contributed by Matthew Molinari.
